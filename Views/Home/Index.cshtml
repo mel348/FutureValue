@@ -1,0 +1,42 @@
+﻿@model FutureValueModel
+@{
+    ViewBag.Title = "Future Value Calculator";
+}
+<div class="container">
+    <header class="jumbotron">
+        <img id="logo" alt="Murach logo" src="~/Images/MurachLogo.jpg"
+            class="img=responsive rounded" />
+        <h1 cclass="mt-3">@ViewBag.Title</h1>
+    </header>
+    <main>
+        <form asp-action="Index" method="post" class="form-horizontal">                                            <!--Specified action controller-->
+            <div class="row">                                                                                       <!--When submitted it is done as a post-->
+                <label asp-for="MonthlyInvestment" class="control-label col-sm-3"> Monthly Investment:</label>
+                <input asp-for="MonthlyInvestment" class="form-control col-sm-3" />
+                <span asp-validation-for="MonthlyInvestment" class="text-danger col"></span>
+            </div>
+            <div class="row">
+                <label asp-for="YearlyInterestRate" class="control-label col-sm-3"> Yearly Interest Rate:</label>  <!--directly connecting to our model with asp-for-->
+                <input asp-for="YearlyInterestRate" class="form-control col-sm-3" />
+                <span asp-validation-for="YearlyInterestRate" class="text-danger col"></span>
+            </div>
+            <div class="row">
+                <label asp-for="Years" class="control-label col-sm-3"> Number of Years:</label>
+                <input asp-for="Years" class="form-control col-sm-3" />
+                <span asp-validation-for="Years" class="text-danger col"></span>
+            </div>
+            <div class="row">
+                <label class="control-label col-sm-3">Future Value:</label>
+                <label class="form-control col-sm-3">@ViewBag.FV.ToString("c2")</label>                             <!--coming to us in a viewbag which means we are getting it from the controller.-->
+            </div>
+            <div class="row">
+                <div class="col offset-sm-3 pl-0">
+                    <button type="submit" class="btn btn-primary">
+                        Calculate
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">Clear</a>                               <!--Takes us to Index-->
+                </div>
+            </div>
+        </form>
+    </main>
+</div>
